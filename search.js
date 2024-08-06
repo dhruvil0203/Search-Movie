@@ -5,12 +5,12 @@ let searchbtn = document.getElementById("searchbtn");
 const getData = async (movie) => {
   try {
     let fetchdata = await fetch(
-      `http://www.omdbapi.com/?apikey=${APIKEY}&t=${movie}`
+      `https://www.omdbapi.com/?apikey=${APIKEY}&t=${encodeURIComponent(movie)}`
     );
     let JsonDataName = await fetchdata.json();
 
     console.log(JsonDataName);
-    
+
     document.querySelector(".card").innerHTML = "";
     searchInput.value = "";
 
@@ -18,11 +18,13 @@ const getData = async (movie) => {
       let div = document.createElement("div");
       div.classList.add("movieCard");
       div.innerHTML = `
-        <img src=${JsonDataName.Poster} alt="">
+        <img src="${JsonDataName.Poster}" alt="${JsonDataName.Title} Poster">
         <div class="cardText">
           <h1>${JsonDataName.Title}</h1>
-          <p class='rating'>Rating: <span> ${JsonDataName.Ratings[0]?.Value || "N/A"}</span></p>
-          <a href="">${JsonDataName.Genre}</a>
+          <p class='rating'>Rating: <span>${
+            JsonDataName.Ratings[0]?.Value || "N/A"
+          }</span></p>
+          <a href="#">${JsonDataName.Genre}</a>
           <p>Released Date: <span>${JsonDataName.Released}</span></p>
           <p>Country: <span>${JsonDataName.Country}</span></p>
           <p>Duration: <span>${JsonDataName.Runtime}</span></p>
