@@ -9,7 +9,8 @@ const getData = async (movie) => {
     );
     let JsonDataName = await fetchdata.json();
 
-    // Clear previous content
+    console.log(JsonDataName);
+    
     document.querySelector(".card").innerHTML = "";
     searchInput.value = "";
 
@@ -20,11 +21,10 @@ const getData = async (movie) => {
         <img src=${JsonDataName.Poster} alt="">
         <div class="cardText">
           <h1>${JsonDataName.Title}</h1>
-          <p class='rating'>Rating: <span> ${
-            JsonDataName.Ratings[0]?.Value || "N/A"
-          }</span></p>
+          <p class='rating'>Rating: <span> ${JsonDataName.Ratings[0]?.Value || "N/A"}</span></p>
           <a href="">${JsonDataName.Genre}</a>
           <p>Released Date: <span>${JsonDataName.Released}</span></p>
+          <p>Country: <span>${JsonDataName.Country}</span></p>
           <p>Duration: <span>${JsonDataName.Runtime}</span></p>
           <p>Description: <span>${JsonDataName.Plot}</span></p>
         </div>`;
