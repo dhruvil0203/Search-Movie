@@ -25,6 +25,7 @@ const getData = async (movie) => {
             JsonDataName.Ratings[0]?.Value || "N/A"
           }</span></p>
           <a href="#">${JsonDataName.Genre}</a>
+          <p>Actors: ${JsonDataName.Actors}</p>
           <p>Released Date: <span>${JsonDataName.Released}</span></p>
           <p>Country: <span>${JsonDataName.Country}</span></p>
           <p>Duration: <span>${JsonDataName.Runtime}</span></p>
